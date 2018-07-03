@@ -34,7 +34,15 @@ Class MainWindow
     Private Sub btnStart_Click(sender As Object, e As RoutedEventArgs) Handles btnStart.Click
         Dim logica As New FileMDM
 
-        logica.Manage(txtFilename.Text)
+        Dim fileGenerato As String = logica.Manage(txtFilename.Text)
+        Dim messaggio As String = "Operazione completata!" +
+            vbCrLf + vbCrLf + "Il file " + fileGenerato +
+            " è stato generato con successo!"
+        MessageBox.Show(messaggio, "OK!",
+                        MessageBoxButton.OK, MessageBoxImage.Information)
+
+        'MessageBox.Show("Operazione completata!")
+        'MessageBox.Show("Il file " + fileGenerato + " è stato generato con successo!")
     End Sub
 
     Private Sub btnExit_Click(sender As Object, e As RoutedEventArgs) Handles btnExit.Click

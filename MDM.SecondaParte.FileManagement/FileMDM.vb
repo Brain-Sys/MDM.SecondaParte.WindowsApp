@@ -5,6 +5,7 @@ Public Class FileMDM
 
     Public Function Manage(Input As String) As String
         Dim contenutoFileFinale As String = ""
+        Dim outputFile As String = "Z:\FileFinale.mdm"
 
         Dim linee As String() = System.IO.File.ReadAllLines(Input)
 
@@ -27,8 +28,13 @@ Public Class FileMDM
 
         Next
 
-        File.WriteAllText("Z:\FileFinale.mdm", contenutoFileFinale)
+        File.WriteAllText(outputFile, contenutoFileFinale)
 
+        Return outputFile
+
+    End Function
+
+    Public Function Manage() As String
 
     End Function
 
