@@ -6,13 +6,15 @@
         xmlns:local="clr-namespace:MDM.SecondaParte.WindowsApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Loaded="Grid_Loaded">
         <Label Content="FILE :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtFilename" HorizontalAlignment="Left" Height="26" Margin="53,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="688" IsReadOnly="True"/>
         <Button x:Name="btnChooseFile" Content="..." HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" Margin="746,10,0,0" Height="26"/>
         <Button x:Name="btnStart" Content="Start" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,41,0,0" IsEnabled="False"/>
         <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Margin="709,391,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="btnHelp" Content="Help" HorizontalAlignment="Left" Margin="629,391,0,0" VerticalAlignment="Top" Width="75"/>
+        <CheckBox x:Name="chkOpenFile" Content="Apri il file automaticamente dopo l'elaborazione" HorizontalAlignment="Left" Margin="90,44,0,0" VerticalAlignment="Top" Width="692" IsChecked="True"/>
+        <TextBox x:Name="txtFileGenerato" HorizontalAlignment="Left" Height="23" Margin="53,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="688" Visibility="Hidden"/>
 
     </Grid>
 </Window>

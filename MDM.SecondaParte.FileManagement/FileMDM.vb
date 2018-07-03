@@ -3,11 +3,19 @@ Imports System.Text
 
 Public Class FileMDM
 
+    'Public Peso As Double = 17.9
+    'Public Const NumeroPezzi As Integer = 5
+
+    Public NumeroLinee As Integer = 0
+    Public NumeroLineeElaborate As Integer = 0
+
     Public Function Manage(Input As String) As String
         Dim contenutoFileFinale As String = ""
         Dim outputFile As String = "Z:\FileFinale.mdm"
 
+        NumeroLineeElaborate = 0
         Dim linee As String() = System.IO.File.ReadAllLines(Input)
+        NumeroLinee = linee.Length
 
         For Each linea In linee
             'Debug.WriteLine(linea)
@@ -24,6 +32,8 @@ Public Class FileMDM
                 parametro = parametro / 2.0
 
                 contenutoFileFinale += Parte1 + parametro.ToString() + Parte2 + vbCrLf
+                NumeroLineeElaborate += 1
+                ' NumeroLineeElaborate = NumeroLineeElaborate + 1
             End If
 
         Next
@@ -34,9 +44,8 @@ Public Class FileMDM
 
     End Function
 
-    Public Function Manage() As String
-
+    Public Function Riuscita() As Boolean
+        Return NumeroLinee = NumeroLineeElaborate
     End Function
-
 
 End Class
