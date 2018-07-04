@@ -15,6 +15,11 @@
         <Button x:Name="btnHelp" Content="Help" HorizontalAlignment="Left" Margin="629,391,0,0" VerticalAlignment="Top" Width="75"/>
         <CheckBox x:Name="chkOpenFile" Content="Apri il file automaticamente dopo l'elaborazione" HorizontalAlignment="Left" Margin="90,44,0,0" VerticalAlignment="Top" Width="692" IsChecked="True"/>
         <TextBox x:Name="txtFileGenerato" HorizontalAlignment="Left" Height="23" Margin="53,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="688" Visibility="Hidden"/>
+        <ComboBox x:Name="cmbSeparator" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content=":"/>
+            <ComboBoxItem Content="#"/>
+            <ComboBoxItem Content="$"/>
+        </ComboBox>
 
     </Grid>
 </Window>

@@ -1,5 +1,6 @@
 ﻿Imports Microsoft.Win32
 Imports MDM.SecondaParte.FileManagement
+Imports System.IO
 
 Class MainWindow
 
@@ -36,19 +37,45 @@ Class MainWindow
 
     Private Sub btnStart_Click(sender As Object, e As RoutedEventArgs) Handles btnStart.Click
 
-        Dim fileGenerato As String = logica.Manage(txtFilename.Text)
-        Dim messaggio As String = "Operazione completata!" +
+        Try
+            ' Come faccio a capire qual è l'elemento selezionato?
+            Dim selezionato As Integer = cmbSeparator.SelectedIndex
+            Dim separatore As ComboBoxItem = cmbSeparator.Items(selezionato)
+            Dim fileGenerato As String
+
+
+
+            If selezionato < 0 Then
+                ' Nessuna selezione sulla combo
+                fileGenerato = logica.Manage(txtFilename.Text)
+            Else
+                ' Ho una seleziona sulla combo
+                Dim simbolo As String = separatore.Content.ToString()
+                fileGenerato = logica.Manage(txtFilename.Text, simbolo)
+            End If
+
+
+
+
+            Dim messaggio As String = "Operazione completata!" +
             vbCrLf + vbCrLf + "Il file " + fileGenerato +
             " è stato generato con successo!"
-        MessageBox.Show(messaggio, "OK!",
+            MessageBox.Show(messaggio, "OK!",
                         MessageBoxButton.OK, MessageBoxImage.Information)
 
-        If chkOpenFile.IsChecked = True Then
-            Process.Start("Notepad.exe", fileGenerato)
-        End If
+            If chkOpenFile.IsChecked = True Then
+                Process.Start("Notepad.exe", fileGenerato)
+            End If
 
-        'MessageBox.Show("Operazione completata!")
-        'MessageBox.Show("Il file " + fileGenerato + " è stato generato con successo!")
+            'MessageBox.Show("Operazione completata!")
+            'MessageBox.Show("Il file " + fileGenerato + " è stato generato con successo!")
+        Catch ex As Exception
+            File.AppendAllText("E:\\LogMDM.txt",
+                               DateTime.Now + vbTab + ex.ToString() + vbCrLf)
+            MessageBox.Show(ex.Message, "Errore",
+                            MessageBoxButton.OK, MessageBoxImage.Error)
+        End Try
+
     End Sub
 
     Private Sub btnExit_Click(sender As Object, e As RoutedEventArgs) Handles btnExit.Click
