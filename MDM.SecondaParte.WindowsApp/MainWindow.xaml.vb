@@ -36,7 +36,6 @@ Class MainWindow
 
     Private Sub btnStart_Click(sender As Object, e As RoutedEventArgs) Handles btnStart.Click
 
-        logica.Test()
         Dim fileGenerato As String = logica.Manage(txtFilename.Text)
         Dim messaggio As String = "Operazione completata!" +
             vbCrLf + vbCrLf + "Il file " + fileGenerato +
