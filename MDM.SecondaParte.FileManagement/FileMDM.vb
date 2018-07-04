@@ -82,4 +82,36 @@ Public Class FileMDM
         Return NumeroLinee = NumeroLineeElaborate
     End Function
 
+    Public Function ReadVariables(input As String) As Variable()
+        Dim elencoVariabili As New List(Of Variable)
+
+        If File.Exists(input) Then
+            Dim linee As String() = File.ReadAllLines(input)
+
+            For Each linea In linee
+                If linea <> "" Then
+                    Dim carattereIniziale = linea.Substring(0, 1)
+
+                    If linea.StartsWith("(*") Then
+                        Exit For
+                    ElseIf carattereIniziale = "#" Then
+                        Dim indice1 As Integer = linea.IndexOf("=")
+                        Dim indice2 As Integer = linea.IndexOf(" ", indice1)
+
+                        Dim v As New Variable
+                        v.Nome = linea.Substring(0, indice1)
+                        v.Valore = linea.Substring(indice1 + 1, indice2 - indice1).Trim()
+                        v.Info = linea.Substring(linea.IndexOf("("))
+                        elencoVariabili.Add(v)
+                    End If
+                End If
+            Next
+
+            Return elencoVariabili.ToArray()
+        End If
+
+        Return Nothing
+
+    End Function
+
 End Class

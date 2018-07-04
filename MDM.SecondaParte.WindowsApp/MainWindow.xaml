@@ -5,21 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDM.SecondaParte.WindowsApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="553" Width="800">
     <Grid Loaded="Grid_Loaded">
         <Label Content="FILE :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtFilename" HorizontalAlignment="Left" Height="26" Margin="53,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="688" IsReadOnly="True"/>
         <Button x:Name="btnChooseFile" Content="..." HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" Margin="746,10,0,0" Height="26"/>
         <Button x:Name="btnStart" Content="Start" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,41,0,0" IsEnabled="False"/>
-        <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Margin="709,391,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btnHelp" Content="Help" HorizontalAlignment="Left" Margin="629,391,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Margin="709,492,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnHelp" Content="Help" HorizontalAlignment="Left" Margin="629,492,0,0" VerticalAlignment="Top" Width="75"/>
         <CheckBox x:Name="chkOpenFile" Content="Apri il file automaticamente dopo l'elaborazione" HorizontalAlignment="Left" Margin="90,44,0,0" VerticalAlignment="Top" Width="692" IsChecked="True"/>
         <TextBox x:Name="txtFileGenerato" HorizontalAlignment="Left" Height="23" Margin="53,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="688" Visibility="Hidden"/>
         <ComboBox x:Name="cmbSeparator" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Width="120">
             <ComboBoxItem Content=":"/>
+            <ComboBoxItem Content=";"/>
             <ComboBoxItem Content="#"/>
             <ComboBoxItem Content="$"/>
         </ComboBox>
+        <Button x:Name="btnReadVariable" Content="Leggi Variabili" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Width="120" Height="45"/>
+        <ListBox x:Name="lstVariables" HorizontalAlignment="Left" Height="394" Margin="135,93,0,0" VerticalAlignment="Top" Width="647"
+                 HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock FontSize="16" Text="{Binding Nome}" Grid.Column="0" />
+                        <TextBox FontSize="16" Text="{Binding Valore}" Grid.Column="1" />
+                        <TextBlock Margin="8,0,0,0" FontSize="16" Text="{Binding Info}" Grid.Column="2" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button x:Name="btnReadComplexFile" Content="Read Complex File" HorizontalAlignment="Left" Margin="10,143,0,0" VerticalAlignment="Top" Width="120" Height="67"/>
 
     </Grid>
 </Window>

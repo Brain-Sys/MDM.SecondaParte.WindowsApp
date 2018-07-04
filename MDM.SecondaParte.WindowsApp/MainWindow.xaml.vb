@@ -35,6 +35,13 @@ Class MainWindow
         End If
     End Sub
 
+    Private Function DammiElementoSelezionato() As String
+        Dim selezionato As Integer = cmbSeparator.SelectedIndex
+        Dim separatore As ComboBoxItem = cmbSeparator.Items(selezionato)
+        Dim simbolo As String = separatore.Content.ToString()
+        Return simbolo
+    End Function
+
     Private Sub btnStart_Click(sender As Object, e As RoutedEventArgs) Handles btnStart.Click
 
         Try
@@ -97,5 +104,32 @@ Class MainWindow
 
     Private Sub Grid_Loaded(sender As Object, e As RoutedEventArgs)
         txtFileGenerato.Visibility = Visibility.Hidden
+    End Sub
+
+    Private Sub btnReadVariable_Click(sender As Object, e As RoutedEventArgs) Handles btnReadVariable.Click
+        Dim chooseFromDisk As New OpenFileDialog
+        chooseFromDisk.Multiselect = False
+
+        Dim risultato As Boolean = chooseFromDisk.ShowDialog()
+
+        If risultato = True Then
+            Dim elencoVariabili As Variable() = logica.ReadVariables(chooseFromDisk.FileName)
+            lstVariables.ItemsSource = elencoVariabili
+        End If
+    End Sub
+
+    Private Sub btnReadComplexFile_Click(sender As Object, e As RoutedEventArgs) Handles btnReadComplexFile.Click
+        Dim lines As String() = File.ReadAllLines("C:\Users\igord\Desktop\Testo.txt")
+        Dim simbolo As String = DammiElementoSelezionato()
+
+        For Each currentLine In lines
+            Dim pezziDiRiga As String() = currentLine.Split(simbolo)
+
+            Dim nome As String = pezziDiRiga(0)
+            Dim anno As String = pezziDiRiga(1)
+            Dim città As String = pezziDiRiga(2)
+            Dim lavoro As String = pezziDiRiga(3)
+
+        Next
     End Sub
 End Class
